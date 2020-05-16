@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Gamers Dungeon</title>
+</head>
+
+<body>
+    <main>
+        <form>
+            <div class="inputs">
+                <div>
+                    <label for="user" class="user-label">Usuario:</label>
+                    <input type="text" class="formInput" id="user" placeholder="Escribe tu usuario" />
+                    <span id="user-text"></span>
+                </div>
+
+                <div>
+                    <label for="password" class="password-label">Contraseña:</label>
+                    <input type="password" class="formInput" id="password" placeholder="Escribe tu contraseña" />
+                    <span id="password-text"></span>
+                </div>
+            </div>
+
+
+            <div class="buttons">
+                <button type="submit" class="button login" id="loginButton">
+                    Ingresar
+                </button>
+
+                <button type="button" class="button register clickable" id="registerButton">
+                    Registrarse
+                </button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        &copy; Gamers Dungeon
+        <script>document.write(new Date().getFullYear());</script>
+    </footer>
+
+</body>
+
+</html>

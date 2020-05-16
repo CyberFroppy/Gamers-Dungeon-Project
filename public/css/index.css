@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family:'Montserrat', sans-serif;
+    position:relative;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('/img/Login\ Background.png')  ;
+    background-color: #767876  ;
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+    background-size:  fixed ;
+    background-position: center;
+}
+.logo{
+    width: 500px;
+    height: 50px;
+}
+label{
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+}
+form{
+    border: 0.5px solid transparent;
+    border-top: 0.5px solid rgb(233, 233, 233);
+    border-bottom: 0.5px solid #F3D11A;
+    margin: 60px auto 97px auto;
+    padding: 30px;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 110%), #F3D11A;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    height: 30em;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap   ;
+}
+/* Clase para los inputs y el link de olvidar contraseña */
+.inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: space-around;
+}
+.inputs > *{
+    align-self: flex-start;
+}
+/* Clase de los inputs de usuario y contraseña */
+.formInput{
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    width: 510px;
+    border-radius: 0.5em;
+    border: 2px solid orange;
+    background: white;
+}
+.formInput:focus{
+    outline-style: inherit;
+}
+.user-label, .password-label{
+    padding:8px 0px;
+
+}
+.password-link{
+    color:black;
+    margin: 10px 0px 0px 0px;
+    font-size: 18px;
+}
+.password-link:hover{
+    opacity: 0.6;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+}
+.button{
+    padding: 8px 20px;
+    border-radius: 15px;
+    border: none;
+    width: 45%;
+    height: 45px;
+    font-weight: bold;
+    font-size: 23px;
+}
+.button:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
+.login{
+    background: rgb(250, 190, 26);
+}
+/* .login:hover{
+    background: rgb(230, 188, 84);
+} */
+.register{
+    background: #FFEB85;
+}
+/* .register:hover{
+    background: rgb(236, 226, 172);
+} */
+
+footer{
+    background-color: #55544F;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center; 
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 20px;
+    width: inherit;
+    margin-top: auto;
+}

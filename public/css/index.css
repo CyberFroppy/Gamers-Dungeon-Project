@@ -71,7 +71,7 @@ input:focus{
     cursor: pointer;
     margin-bottom: 20px ;
 }
-.register-btn:hover{
+.login-btn:hover{
     background: rgb(0, 119, 255);
 }
 .link{

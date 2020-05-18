@@ -1,48 +1,46 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 *{
     margin: 0px;
     padding: 0px;
-    font-family:'Montserrat', sans-serif;
+    font-family:'Raleway', sans-serif;
     position:relative;
 }
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('/img/Login\ Background.png')  ;
-    background-color: #767876  ;
-    background-blend-mode: lighten;
+    background-image: url('/GamersDungeon_FinalProject/public/img/background.png');
+    background-color: #A8A9A9  ;
+    background-blend-mode: overlay;
     background-repeat: no-repeat;
-    background-size:  fixed ;
+    background-size:  cover ;
     background-position: center;
 }
 .logo{
-    width: 500px;
-    height: 50px;
+    width: 550px;
+    height: 75px;
 }
 label{
     display: block;
     font-style: normal;
-    font-weight: 600;
     font-size: 25px;
 }
 form{
     border: 0.5px solid transparent;
     border-top: 0.5px solid rgb(233, 233, 233);
-    border-bottom: 0.5px solid #F3D11A;
+    border-bottom: 0.5px solid #3EB9FF;
     margin: 60px auto 97px auto;
     padding: 30px;
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 110%), #F3D11A;
+    background: linear-gradient(180deg, #FFFFFF -31.05%, #3EB9FF 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    height: 30em;
+    height: 25em;
     width: 35%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap   ;
 }
-/* Clase para los inputs y el link de olvidar contraseña */
 .inputs{
     display: flex;
     flex-direction: column;
@@ -52,14 +50,13 @@ form{
 .inputs > *{
     align-self: flex-start;
 }
-/* Clase de los inputs de usuario y contraseña */
 .formInput{
     padding: 10px 10px;
     margin-bottom: 20px;
     font-size: 18px;
     width: 510px;
     border-radius: 0.5em;
-    border: 2px solid orange;
+    border: 2px solid #2106CA;
     background: white;
 }
 .formInput:focus{
@@ -68,14 +65,6 @@ form{
 .user-label, .password-label{
     padding:8px 0px;
 
-}
-.password-link{
-    color:black;
-    margin: 10px 0px 0px 0px;
-    font-size: 18px;
-}
-.password-link:hover{
-    opacity: 0.6;
 }
 .buttons{
     display: flex;
@@ -89,7 +78,6 @@ form{
     border: none;
     width: 45%;
     height: 45px;
-    font-weight: bold;
     font-size: 23px;
 }
 .button:hover{
@@ -97,20 +85,16 @@ form{
     opacity: 0.6;
 }
 .login{
-    background: rgb(250, 190, 26);
+    background: #13276C;
+    color: white;
 }
-/* .login:hover{
-    background: rgb(230, 188, 84);
-} */
 .register{
-    background: #FFEB85;
+    background: #2106CA;
+    color: white;
 }
-/* .register:hover{
-    background: rgb(236, 226, 172);
-} */
 
 footer{
-    background-color: #55544F;
+    background-color: black;
     display: flex;
     flex-direction: row;
     justify-content: center;

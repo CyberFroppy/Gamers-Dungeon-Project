@@ -18,14 +18,18 @@
             <div class="form-inputs">
                 <div class="user">
                     <p>Usuario:</p>
-                    <input type="text" placeholder="Teclea tu usuario">
+                    <input type="text" placeholder="Ingresa tu usuario">
+                </div>
+                <div class="email">
+                    <p>Correo:</p>
+                    <input type="email" placeholder="Ingresa tu email">
                 </div>
                 <div class="password">
                     <p>Contraseña: </p>
                     <input type="password" placeholder="Ingresa contraseña">
                 </div>
+                <div class="error"><span>El usuario o contraseña no existe</span></div>
             </div>
-            <div class="error"></div>
             <button class="login-btn">Login</button>
             <p>¿No tienes una cuenta?
                 <a class="link" href="./register.html">Regístrate</a>
@@ -33,7 +37,7 @@
 
         </div>
     </form>
-
+    <script src="./js/index.js"></script>
 </body>
 
 </html>

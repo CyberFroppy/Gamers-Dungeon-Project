@@ -42,10 +42,7 @@ p{
     width: 100%;
     padding: 15px;
 }
-.user{
-    padding-bottom:15px ;
-}
-.password{
+.user, .password, .email {
     padding-bottom:15px ;
 }
 input{
@@ -81,6 +78,10 @@ input:focus{
 }
 .link:hover{
     color: white;
+}
+.error{
+    color: red;
+    font-size: 18px;
 }
 @media (min-width: 600px) and (max-width: 990px) {
     .logo{

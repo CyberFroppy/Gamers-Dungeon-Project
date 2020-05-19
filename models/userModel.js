@@ -29,6 +29,11 @@ const Users = {
         return usersCollection
             .find()
             .then(allUsers => allUsers);
+    },
+    getUserByUsername: async function(username) {
+        return usersCollection
+            .find({username : username})
+            .then(user => user);
     }
 };
 

@@ -32,7 +32,7 @@ const Users = {
     },
     getUserByUsername: async function(username) {
         return usersCollection
-            .find({username : username})
+            .findOne({username : username})
             .then(user => user);
     }
 };

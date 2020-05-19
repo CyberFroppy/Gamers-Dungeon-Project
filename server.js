@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const {
     Users
 } = require("./models/userModel");
@@ -89,17 +90,22 @@ app.post('/api/login', jsonParser, (req, res) => {
 
     return Users
         .getUserByUsername(username)
-        .then(user =>
-            bcrypt.compare(password, user.password)
-            .then(result => {
-                if (result) {
-                    return createToken(res)(user);
-                }
-                res.statusMessage = "Wrong credentials";
-                return res.status(401).end();
-            })
-            .catch(error(res))
-        ).catch(error(res));
+        .then(user => {
+            if (user) {
+                return bcrypt.compare(password, user.password)
+                    .then(result => {
+                        if (result) {
+                            return createToken(res)(user);
+                        }
+                        res.statusMessage = "Wrong credentials";
+                        return res.status(409).end();
+                    })
+                    .catch(error(res));
+            }
+            res.statusMessage = "User not found";
+            return res.status(409).end();
+        })
+        .catch(error(res));
 });
 
 app.listen(PORT, () => {
@@ -108,7 +114,8 @@ app.listen(PORT, () => {
     new Promise((resolve, reject) => {
             mongoose.connect(DATABASE_URL, {
                 useNewUrlParser: true,
-                useUnifiedTopology: true
+                useUnifiedTopology: true,
+                useCreateIndex: true
             }, err => err ? reject(err) : resolve());
         })
         .catch(err => {

@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const {
     Users
 } = require("./models/userModel");
+const {Games} = require("./models/gameModel");
 const {
     PORT,
     DATABASE_URL,
@@ -56,8 +57,26 @@ function createToken(res) {
 }
 
 app.post('/api/add-game', [adminValidation ,jsonParser], (req, res) => {
+    const {
+        gamename,
+        stock
+    } = req.body;
 
+    if (!gamename || !stock) {
+        res.statusMessage = "Missing parameters for game creation";
+        return res.status(406).end();
+    }
+
+    let gameData = {gamename, stock};
+
+    return Games.addGame(gameData).then(createdGame => {
+        if(createdGame) {
+            return res.status(201).json(createdGame);
         }
+        res.statusMessage = "Something went wrong creating game";
+        return res.status(400).end();
+    }).catch(error(res));
+});
 
 app.get('/api/verify-token', userValidation, (_, res) => {
     return res.status(200).end();

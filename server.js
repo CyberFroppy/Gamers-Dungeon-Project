@@ -17,8 +17,6 @@ const {
 const app = express();
 const jsonParser = bodyParser.json();
 
-const emailRegex = /\S+@\S+\.\S+/;
-
 app.use(morgan('dev'));
 app.use(express.static("public"));
 
@@ -34,7 +32,7 @@ function createToken(res) {
         if (user) {
             let userData = {
                 username: user.username,
-                email: user.email
+                userType: user.userType
             };
             return jwt.sign(userData, API_SECRET, {
                 expiresIn: '3h'
@@ -55,16 +53,10 @@ function createToken(res) {
 app.post('/api/register', jsonParser, (req, res) => {
     const {
         username,
-        email,
         password
     } = req.body;
-    if (!username || !email || !password) {
+    if (!username || !password) {
         res.statusMessage = "Missing parameters in the body of the request";
-        return res.status(406).end();
-    }
-
-    if (!emailRegex.test(email)) {
-        res.statusMesage = "Invalid email address";
         return res.status(406).end();
     }
 

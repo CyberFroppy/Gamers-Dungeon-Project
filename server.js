@@ -77,7 +77,6 @@ app.post('/api/register', jsonParser, (req, res) => {
         .then(hashedPassword => {
             let userData = {
                 username,
-                email,
                 password: hashedPassword
             };
 

@@ -25,6 +25,7 @@ function loginUser(username, password) {
         }
     }).then(responseJSON => {
         localStorage.setItem('token', responseJSON.token);
+        window.location.href = "home.html";
     }).catch(_ => {
         errorElement.style.display = 'block';
     });

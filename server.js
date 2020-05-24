@@ -13,7 +13,12 @@ const {
     API_SECRET,
     HASHING_ROUNDS
 } = require('./config');
+const {
+    validate
+} = require("./middleware/authenticate");
 
+const userValidation = validate(false);
+const adminValidation = validate(true);
 const app = express();
 const jsonParser = bodyParser.json();
 
@@ -50,17 +55,12 @@ function createToken(res) {
     };
 }
 
-app.get('/api/verify-token', (req, res) => {
-    let token = req.headers.sessiontoken;
+app.post('/api/add-game', [adminValidation ,jsonParser], (req, res) => {
 
-    return jwt.verify(token, API_SECRET, (err, _) => {
-        if (err) {
-            res.statusMessage = "Expired session, log in again";
-            return res.status(409).end();
         }
 
-        return res.status(200).end();
-    });
+app.get('/api/verify-token', userValidation, (_, res) => {
+    return res.status(200).end();
 });
 
 app.post('/api/register', jsonParser, (req, res) => {

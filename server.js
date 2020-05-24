@@ -17,6 +17,8 @@ const {
 const app = express();
 const jsonParser = bodyParser.json();
 
+const emailRegex = /\S+@\S+\.\S+/;
+
 app.use(morgan('dev'));
 app.use(express.static("public"));
 
@@ -58,6 +60,11 @@ app.post('/api/register', jsonParser, (req, res) => {
     } = req.body;
     if (!username || !email || !password) {
         res.statusMessage = "Missing parameters in the body of the request";
+        return res.status(406).end();
+    }
+
+    if (!emailRegex.test(email)) {
+        res.statusMesage = "Invalid email address";
         return res.status(406).end();
     }
 

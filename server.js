@@ -50,6 +50,19 @@ function createToken(res) {
     };
 }
 
+app.get('/api/verify-token', (req, res) => {
+    let token = req.headers.sessiontoken;
+
+    return jwt.verify(token, API_SECRET, (err, _) => {
+        if (err) {
+            res.statusMessage = "Expired session, log in again";
+            return res.status(409).end();
+        }
+
+        return res.status(200).end();
+    });
+});
+
 app.post('/api/register', jsonParser, (req, res) => {
     const {
         username,

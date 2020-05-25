@@ -9,6 +9,14 @@ const gamesCollectionSchema = mongoose.Schema({
     stock: {
         type: Number,
         required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
     }
 });
 

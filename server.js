@@ -61,17 +61,26 @@ function createToken(res) {
 app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
     const {
         gamename,
-        stock
+        stock,
+        price,
+        description
     } = req.body;
 
-    if (!gamename || !stock) {
+    if (!gamename || !stock || !price || !description) {
         res.statusMessage = "Missing parameters for game creation";
+        return res.status(406).end();
+    }
+
+    if(Number(stock) === NaN || Number(price) === NaN) {
+        res.statusMessage = "Stock and price must be numeric values";
         return res.status(406).end();
     }
 
     let gameData = {
         gamename,
-        stock
+        stock,
+        price,
+        description
     };
 
     return Games.addGame(gameData).then(createdGame => {

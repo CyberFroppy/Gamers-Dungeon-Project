@@ -7,7 +7,9 @@ const bcrypt = require("bcryptjs");
 const {
     Users
 } = require("./models/userModel");
-const {Games} = require("./models/gameModel");
+const {
+    Games
+} = require("./models/gameModel");
 const {
     PORT,
     DATABASE_URL,
@@ -56,7 +58,7 @@ function createToken(res) {
     };
 }
 
-app.post('/api/add-game', [adminValidation ,jsonParser], (req, res) => {
+app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
     const {
         gamename,
         stock
@@ -67,14 +69,48 @@ app.post('/api/add-game', [adminValidation ,jsonParser], (req, res) => {
         return res.status(406).end();
     }
 
-    let gameData = {gamename, stock};
+    let gameData = {
+        gamename,
+        stock
+    };
 
     return Games.addGame(gameData).then(createdGame => {
-        if(createdGame) {
+        if (createdGame) {
             return res.status(201).json(createdGame);
         }
         res.statusMessage = "Something went wrong creating game";
         return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.get('/api/games', (_, res) => {
+    return Games.getAllGames().then(games => {
+        if (games) {
+            return res.status(200).json(games);
+        }
+        res.statusMessage = "Something went wrong while getting the games";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.get('/api/available-games', (_, res) => {
+    return Games.getAvailableGames().then(games => {
+        if (games) {
+            return res.status(200).json(games);
+        }
+        res.statusMessage = "Something went wrong while getting available games";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.delete('/api/games/:name', adminValidation, (req, res) => {
+    let gamename = req.params.name;
+    return Games.removeGameByName(gamename).then(removed => {
+        if (removed.n === 0) {
+            res.statusMessage = `No game with name ${gamename}`;
+            return res.status(404).end();
+        }
+        return res.status(200).end();
     }).catch(error(res));
 });
 

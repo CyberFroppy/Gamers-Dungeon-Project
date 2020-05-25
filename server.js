@@ -8,12 +8,20 @@ const {
     Users
 } = require("./models/userModel");
 const {
+    Games
+} = require("./models/gameModel");
+const {
     PORT,
     DATABASE_URL,
     API_SECRET,
     HASHING_ROUNDS
 } = require('./config');
+const {
+    validate
+} = require("./middleware/authenticate");
 
+const userValidation = validate(false);
+const adminValidation = validate(true);
 const app = express();
 const jsonParser = bodyParser.json();
 
@@ -32,7 +40,7 @@ function createToken(res) {
         if (user) {
             let userData = {
                 username: user.username,
-                email: user.email
+                userType: user.userType
             };
             return jwt.sign(userData, API_SECRET, {
                 expiresIn: '3h'
@@ -50,13 +58,72 @@ function createToken(res) {
     };
 }
 
+app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
+    const {
+        gamename,
+        stock
+    } = req.body;
+
+    if (!gamename || !stock) {
+        res.statusMessage = "Missing parameters for game creation";
+        return res.status(406).end();
+    }
+
+    let gameData = {
+        gamename,
+        stock
+    };
+
+    return Games.addGame(gameData).then(createdGame => {
+        if (createdGame) {
+            return res.status(201).json(createdGame);
+        }
+        res.statusMessage = "Something went wrong creating game";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.get('/api/games', (_, res) => {
+    return Games.getAllGames().then(games => {
+        if (games) {
+            return res.status(200).json(games);
+        }
+        res.statusMessage = "Something went wrong while getting the games";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.get('/api/available-games', (_, res) => {
+    return Games.getAvailableGames().then(games => {
+        if (games) {
+            return res.status(200).json(games);
+        }
+        res.statusMessage = "Something went wrong while getting available games";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.delete('/api/games/:name', adminValidation, (req, res) => {
+    let gamename = req.params.name;
+    return Games.removeGameByName(gamename).then(removed => {
+        if (removed.n === 0) {
+            res.statusMessage = `No game with name ${gamename}`;
+            return res.status(404).end();
+        }
+        return res.status(200).end();
+    }).catch(error(res));
+});
+
+app.get('/api/verify-token', userValidation, (_, res) => {
+    return res.status(200).end();
+});
+
 app.post('/api/register', jsonParser, (req, res) => {
     const {
         username,
-        email,
         password
     } = req.body;
-    if (!username || !email || !password) {
+    if (!username || !password) {
         res.statusMessage = "Missing parameters in the body of the request";
         return res.status(406).end();
     }
@@ -65,7 +132,6 @@ app.post('/api/register', jsonParser, (req, res) => {
         .then(hashedPassword => {
             let userData = {
                 username,
-                email,
                 password: hashedPassword
             };
 

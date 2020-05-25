@@ -42,7 +42,7 @@ p{
     width: 100%;
     padding: 15px;
 }
-.user, .password, .email {
+.user, .password {
     padding-bottom:15px ;
 }
 input{

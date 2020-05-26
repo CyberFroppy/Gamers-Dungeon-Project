@@ -62,7 +62,7 @@ function createToken(res) {
     };
 }
 
-app.post('/api/add-food', [adminValidation, jsonParser], (req, res) => {
+app.post('/api/food', [adminValidation, jsonParser], (req, res) => {
     const {
         name,
         price
@@ -72,7 +72,7 @@ app.post('/api/add-food', [adminValidation, jsonParser], (req, res) => {
         return res.status(406).end();
     }
 
-    if (Number(price) === NaN) {
+    if (isNaN(price)) {
         res.statusMessage = "Price must be a numeric value";
         return res.status(406).end();
     }
@@ -171,7 +171,7 @@ app.patch('/api/games/:id', [adminValidation, jsonParser], (req, res) => {
         }).catch(error(res));
 });
 
-app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
+app.post('/api/games', [adminValidation, jsonParser], (req, res) => {
     const {
         gamename,
         stock,
@@ -184,7 +184,7 @@ app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
         return res.status(406).end();
     }
 
-    if (Number(stock) === NaN || Number(price) === NaN) {
+    if (isNaN(stock) || isNaN(price)) {
         res.statusMessage = "Stock and price must be numeric values";
         return res.status(406).end();
     }
@@ -216,7 +216,7 @@ app.get('/api/games', (_, res) => {
     }).catch(error(res));
 });
 
-app.get('/api/available-games', (_, res) => {
+app.get('/api/games/available', (_, res) => {
     return Games.getAvailableGames().then(games => {
         if (games) {
             return res.status(200).json(games);

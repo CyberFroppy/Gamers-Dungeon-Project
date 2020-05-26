@@ -5,37 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="shortcut icon" href="./img/TowerLogo.png" type="image/x-icon" />
-    <title>Gamers Dungeon</title>
+    <title>Home</title>
 </head>
 
 <body>
-    <form class="form">
-        <div class="form-container">
-            <div class="logo-img">
-                <img class="logo" src="./img/DungeonsLogo.png" alt="DungeonsLogo">
-            </div>
-            <div class="form-inputs">
-                <div class="user">
-                    <p>Usuario:</p>
-                    <input type="text" placeholder="Ingresa tu usuario">
-                    <label for="user-field">Usuario:</label>
-                    <input id="user-field" type="text" placeholder="Ingresa tu usuario">
-                </div>
-                <div class="password">
-                    <label for="password-field">Contraseña: </label>
-                    <input id="password-field" type="password" placeholder="Ingresa contraseña">
-                </div>
-                <div class="error"><span>Error haciendo login</span></div>
-            </div>
-            <button class="login-btn">Login</button>
-            <p>¿No tienes una cuenta?
-                <a class="link" href="./register.html">Regístrate</a>
-            </p>
+    <nav>
+        <div class="nav-container">
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <a class="inicio" href="#"><img class="logo" src="./img/DungeonsLogoWhite.png" alt="Tower Logo"></a>
+            <ul class="nav-items">
+                <li><a class="active inicio" href="#">Inicio</a></li>
+                <li><a class="reservaciones" href="#">Reservaciones</a></li>
+                <li><a class="menu" href="#">Menú</a></li>
+                <li><a class="juegos" href="#">Juegos</a></li>
+                <li><a class="nosotros" href="#">Nosotros</a></li>
+                <li><a class="contacto" href="#">Contacto</a></li>
+                <li><a class="login" href="./login.html">Login</a></li>
+                <li>
+                    <a class="cart" href="#">
+                        <img class="carrito" src="./img/Carrito.png" alt="Carrito">
+                    </a>
+                </li>
+            </ul>
 
         </div>
-    </form>
-    <script src="./js/index.js"></script>
+    </nav>
 </body>
 
 </html>

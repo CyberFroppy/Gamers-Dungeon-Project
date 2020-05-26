@@ -4,6 +4,7 @@
     margin: 0px;
     font-family: "Raleway";
 }
+/* NavBar */
 .logo{
     width: 250px;
     height: 40px;
@@ -57,7 +58,9 @@ nav{
     height: 60px;
     background-color: #0082E6;
 }
+
 @media (max-width: 1025px){
+    /* NavBar */
     .logo{
         width: 220px;
         height: 37px;
@@ -67,7 +70,9 @@ nav{
     }
 
 }
+
 @media (max-width: 946px){
+    /* NavBar Móvil */
     .checkbtn{
         display: block;
         cursor: pointer;
@@ -92,7 +97,7 @@ nav{
     .nav-items > li > a{
         font-size: 20px;
     }
-    .nav-items >li> a:hover,.active{
+    .nav-items >li> a:hover, .active{
         background: none;
         color: #0082e6;
     }

@@ -4,6 +4,10 @@ const gamesCollectionSchema = mongoose.Schema({
     gamename: {
         type: String,
         required: true,
+    },
+    id: {
+        type: String,
+        required: true,
         unique: true
     },
     stock: {
@@ -42,10 +46,10 @@ const Games = {
             })
             .then(availableGames => availableGames);
     },
-    removeGameByName: async function(gamename) {
+    removeGameById: async function(gameId) {
         return gamesCollection
             .deleteOne({
-                gamename: gamename
+                id: gameId
             })
             .then(deleted => deleted);
     }

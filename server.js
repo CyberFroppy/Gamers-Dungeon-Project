@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const uuid = require("uuid");
 const {
     Users
 } = require("./models/userModel");
@@ -80,7 +81,8 @@ app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
         gamename,
         stock,
         price,
-        description
+        description,
+        id: uuid.v4()
     };
 
     return Games.addGame(gameData).then(createdGame => {
@@ -112,11 +114,11 @@ app.get('/api/available-games', (_, res) => {
     }).catch(error(res));
 });
 
-app.delete('/api/games/:name', adminValidation, (req, res) => {
-    let gamename = req.params.name;
-    return Games.removeGameByName(gamename).then(removed => {
+app.delete('/api/games/:id', adminValidation, (req, res) => {
+    let gameId = req.params.id;
+    return Games.removeGameById(gameId).then(removed => {
         if (removed.n === 0) {
-            res.statusMessage = `No game with name ${gamename}`;
+            res.statusMessage = `No game with id ${gameId}`;
             return res.status(404).end();
         }
         return res.status(200).end();

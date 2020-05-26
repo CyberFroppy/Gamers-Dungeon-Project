@@ -52,6 +52,15 @@ const Games = {
                 id: gameId
             })
             .then(deleted => deleted);
+    },
+    updateGameById: async function(gameId, newInfo) {
+        return gamesCollection
+            .findOneAndUpdate({
+                id: gameId
+            }, newInfo, {
+                new: true
+            })
+            .then(updatedGame => updatedGame);
     }
 };
 

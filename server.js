@@ -136,6 +136,41 @@ app.patch('/api/food/:id', [adminValidation, jsonParser], (req, res) => {
         }).catch(error(res));
 });
 
+app.patch('/api/games/:id', [adminValidation, jsonParser], (req, res) => {
+    const gameId = req.params.id;
+    const {
+        gamename,
+        stock,
+        price,
+        description
+    } = req.body;
+
+    if (!gamename && !stock && !price && !description) {
+        res.statusMessage = "There must be at least one parameter to updated";
+        return res.status(406).end();
+    }
+
+    if (stock && isNaN(stock) || price && isNaN(price)) {
+        res.statusMessage = "Price and stock must be numeric values";
+        return res.status(406).end();
+    }
+
+    const gameInfo = {};
+    if (gamename) gameInfo.gamename = gamename;
+    if (stock) gameInfo.stock = stock;
+    if (price) gameInfo.price = price;
+    if (description) gameInfo.description = description;
+
+    return Games.updateGameById(gameId, gameInfo)
+        .then(newGame => {
+            if (newGame) {
+                return res.status(202).json(newGame);
+            }
+            res.statusMessage = "Something went wrong while updating game";
+            return res.status(400).end();
+        }).catch(error(res));
+});
+
 app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
     const {
         gamename,

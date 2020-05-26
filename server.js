@@ -12,6 +12,9 @@ const {
     Games
 } = require("./models/gameModel");
 const {
+    Foods
+} = require("./models/foodModel");
+const {
     PORT,
     DATABASE_URL,
     API_SECRET,
@@ -59,6 +62,80 @@ function createToken(res) {
     };
 }
 
+app.post('/api/add-food', [adminValidation, jsonParser], (req, res) => {
+    const {
+        name,
+        price
+    } = req.body;
+    if (!name || !price) {
+        res.statusMessage = "Missing parameters while adding food";
+        return res.status(406).end();
+    }
+
+    if (Number(price) === NaN) {
+        res.statusMessage = "Price must be a numeric value";
+        return res.status(406).end();
+    }
+
+    const foodInfo = {
+        id: uuid.v4(),
+        name,
+        price
+    };
+
+    return Foods.addFood(foodInfo).
+    then(newFood => {
+            if (newFood) {
+                return res.status(201).json(newFood);
+            }
+            res.statusMessage = "Something went wrong creating food";
+            return res.status(400).end();
+        })
+        .catch(error(res));
+});
+
+app.get('/api/food', (_, res) => {
+    return Foods.getFoods()
+        .then(foods => res.status(200).json(foods))
+        .catch(error(res));
+});
+
+app.delete('/api/food/:id', adminValidation, (req, res) => {
+    const foodId = req.params.id;
+    return Foods.removeFoodById(foodId)
+        .then(removed => {
+            if (removed.n === 0) {
+                res.statusMessage = `No food with id: ${foodId}`;
+                return res.status(404).end();
+            }
+            return res.status(200).end();
+        })
+        .catch(error(res));
+});
+
+app.patch('/api/food/:id', [adminValidation, jsonParser], (req, res) => {
+    const foodId = req.params.id;
+    const {
+        name,
+        price
+    } = req.body;
+    if (!name && !price) {
+        res.statusMessage = "There must be at least one parameter to update";
+        return res.status(406).end();
+    }
+    let foodInfo = {};
+    if (name) foodInfo.name = name;
+    if (price) foodInfo.price = price;
+    return Foods.updateFood(foodId, foodInfo)
+        .then(updatedFood => {
+            if (updatedFood) {
+                return res.status(202).json(updatedFood);
+            }
+            res.statusMessage = "Something went wrong while updating food";
+            return res.status(400).end();
+        }).catch(error(res));
+});
+
 app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
     const {
         gamename,
@@ -72,7 +149,7 @@ app.post('/api/add-game', [adminValidation, jsonParser], (req, res) => {
         return res.status(406).end();
     }
 
-    if(Number(stock) === NaN || Number(price) === NaN) {
+    if (Number(stock) === NaN || Number(price) === NaN) {
         res.statusMessage = "Stock and price must be numeric values";
         return res.status(406).end();
     }

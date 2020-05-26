@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/navBar.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="shortcut icon" href="./img/TowerLogo.png" type="image/x-icon" />
+    <title>Reservaciones</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <a class="inicio" href="./index.html"><img class="logo" src="./img/DungeonsLogoWhite.png"
+                    alt="Tower Logo"></a>
+            <ul class="nav-items">
+                <li><a class="inicio" href="./index.html">Inicio</a></li>
+                <li><a class="active reservaciones" href="./reservaciones.html">Reservaciones</a></li>
+                <li><a class="menu" href="./menu.html">Menú</a></li>
+                <li><a class="juegos" href="./juegos.html">Juegos</a></li>
+                <li><a class="nosotros" href="./nosotros.html">Nosotros</a></li>
+                <li><a class="contacto" href="./contacto.html">Contacto</a></li>
+                <li><a class="login" href="./login.html">Login</a></li>
+                <li>
+                    <a class="cart" href="./carrito.html">
+                        <img class="carrito" src="./img/Carrito.png" alt="Carrito">
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <section class="reservaciones-semana">
+        <h1>Reservaciones</h1>
+    </section>
+
+    <section class="reservar-mesa">
+        <form class="form">
+            <div class="form-container">
+                <div class="logo-img">
+                    <h1>Reserva tu Mesa</h1>
+                </div>
+                <div class="form-inputs">
+                    <div class="name">
+                        <label for="name-field">Nombre:</label>
+                        <input id="name-field" type="text" placeholder="Ingresa tu nombre" required>
+                    </div>
+                    <div class="date">
+                        <label for="date-field">Fecha: </label>
+                        <input id="date-field" type="date" required>
+                    </div>
+                    <div class="hour">
+                        <label for="hour-field">Hora: </label>
+                        <input id="hour-field" type="time" required>
+                    </div>
+                    <div class="people-select">
+                        <label for="people">Personas: </label>
+                        <select name="people" id="people" required>
+                            <option value="">-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                    <div class="games-select">
+                        <label for="games">Juego de Mesa: </label>
+                        <select name="games" id="games">
+                            <optgroup label="Juegos de Mesa"></optgroup>
+                            <option value="">-</option>
+                            <option value="azul">Azul</option>
+                            <option value="catan">Catan</option>
+                            <option value="risk">Risk</option>
+                        </select>
+                    </div>
+                    <div class="table-select">
+                        <label for="table">Número de Mesa: </label>
+                        <select name="table" id="table">
+                            <option value="">-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <button class="register-btn">Registrarse</button>
+                    <div class="error"><span>Error al reservar</span></div>
+                    <div>
+                        <p>Nota: A partir de la hora de inicio se cuenta con un máximo de 5 horas por reservación.</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+</body>
+
+</html>

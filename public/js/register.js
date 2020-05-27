@@ -27,7 +27,7 @@ function registerUser(username, email, password) {
         }
     }).then(responseJSON => {
         localStorage.setItem('token', responseJSON.token);
-        window.location.href = "home.html";
+        window.location.href = "/";
         errorElement.style.display = 'none';
     }).catch(_ => {
         errorElement.style.display = 'block';

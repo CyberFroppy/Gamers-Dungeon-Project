@@ -15,6 +15,9 @@ const {
     Foods
 } = require("./models/foodModel");
 const {
+    Reservations
+} = require("./models/reservationModel");
+const {
     PORT,
     DATABASE_URL,
     API_SECRET,
@@ -62,6 +65,39 @@ function createToken(res) {
         return res.status(400).end();
     };
 }
+
+app.post('/api/reservation', [jsonParser, userValidation], (req, res) => {
+    const userId = req.userInfo._id;
+    console.log(userId);
+    const {
+        reservationName,
+        tableNo,
+        date,
+        game,
+        people
+    } = req.body;
+    if (!reservationName || !tableNo || !date || !game || !people) {
+        res.statusMessage = "Missing parameters while creating reservation";
+        return res.status(406).end();
+    }
+    const reservationInfo = {
+        reservationName,
+        tableNo,
+        date,
+        game,
+        people,
+        id: uuid.v4(),
+        user: userId
+    };
+    return Reservations.createReservation(reservationInfo)
+        .then(createdReservation => {
+            if (createdReservation) {
+                return res.status(201).json(createdReservation);
+            }
+            res.statusMessage = "Error while creating reservation";
+            return res.status(400).end();
+        }).catch(error(res));
+});
 
 app.post('/api/food', [adminValidation, jsonParser], (req, res) => {
     const {

@@ -15,6 +15,18 @@ const reservationsCollectionSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },
+    reservationName: {
+        type: String,
+        required: true
+    },
+    people: {
+        type: Number,
+        required: true
+    },
+    game: {
+        type: String,
+        required: true
+    },
     food: [{
         name: String,
         quantity: Number

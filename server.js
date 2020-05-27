@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const nodemailer = require("nodemailer");
+const request = require("request-promise");
 const {
     Users
 } = require("./models/userModel");
@@ -24,7 +25,8 @@ const {
     API_SECRET,
     HASHING_ROUNDS,
     EMAIL,
-    EMAIL_PASSWORD
+    EMAIL_PASSWORD,
+    CLIENT_ID
 } = require('./config');
 const {
     validate
@@ -244,7 +246,7 @@ app.patch('/api/games/:id', [adminValidation, jsonParser], (req, res) => {
         }).catch(error(res));
 });
 
-app.post('/api/games', [adminValidation, jsonParser], (req, res) => {
+app.post('/api/games', [adminValidation, jsonParser], async (req, res) => {
     const {
         gamename,
         stock,
@@ -262,11 +264,22 @@ app.post('/api/games', [adminValidation, jsonParser], (req, res) => {
         return res.status(406).end();
     }
 
+    let imageUrl = `https://www.boardgameatlas.com/api/search?name=${encodeURIComponent(gamename)}&client_id=${CLIENT_ID}`;
+    let options = {
+        uri: imageUrl,
+        headers: {
+            'User-Agent': 'Request-Promise'
+        },
+        json: true
+    };
+    let gameFetch = await request(options).catch(err => console.log(err));
+
     let gameData = {
         gamename,
         stock,
         price,
         description,
+        image: gameFetch.games[0].images.small,
         id: uuid.v4()
     };
 
@@ -311,6 +324,10 @@ app.delete('/api/games/:id', adminValidation, (req, res) => {
 });
 
 app.get('/api/verify-token', userValidation, (_, res) => {
+    return res.status(200).end();
+});
+
+app.get('/api/verify-admin', adminValidation, (_,res) => {
     return res.status(200).end();
 });
 

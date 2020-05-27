@@ -40,12 +40,13 @@
     </nav>
     <main>
         <h1>Board Games</h1>
+        <section class="game-list">
         <div class="game">
             <div>
                 <img src="./img/milkshakes.png" alt="milkshakes">
             </div>
             <div class="descrip-id">
-                <div class="id">
+                <div class="id admin-section">
                     <h2>ID</h2>
                     <p>1234567543</p>
                 </div>
@@ -75,13 +76,15 @@
                     <div class="add-cart">
                         <button class="add-cart-btn">Add to Cart</button>
                     </div>
-                    <div class="delete">
+                    <div class="delete admin-section">
                         <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
                     </div>
                 </div>
             </div>
         </div>
+        </section>
 
+        <section class="admin-section">
         <button class="add-btn"><i class="far fa-plus-square"></i>Add Board Game</button>
         <button class="edit-btn"><i class="fas fa-edit"></i></button>
         <div class="edit-form">
@@ -89,8 +92,12 @@
                 <div class="form-container">
                     <div class="form-inputs">
                         <div class="id-edit">
-                            <label for="id-field">Name:</label>
+                            <label for="id-field">Id:</label>
                             <input id="id-field" type="text" placeholder="Id of Game">
+                        </div>
+                        <div class="name-edit">
+                            <label for="name-field">Name:</label>
+                            <input id="name-field" type="text" placeholder="Name of Game">
                         </div>
                         <div class="description-edit">
                             <label for="description-field">Description:</label>
@@ -110,12 +117,14 @@
                 </div>
             </form>
         </div>
+        </section>
     </main>
     <footer>
         <p>&copy; Gamers Dungeon
             <script>document.write(new Date().getFullYear());</script>
         </p>
     </footer>
+    <script type="module" src="/js/juegos.js"></script>
 </body>
 
 </html>

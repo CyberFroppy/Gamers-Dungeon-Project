@@ -21,6 +21,10 @@ const gamesCollectionSchema = mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: true
     }
 });
 
@@ -31,6 +35,13 @@ const Games = {
         return gamesCollection
             .create(newGame)
             .then(createdGame => createdGame);
+    },
+    getGameById: async function(id) {
+        return gamesCollection
+            .findOne({
+                id: id
+            })
+            .then(foundGame => foundGame);
     },
     getAllGames: async function() {
         return gamesCollection

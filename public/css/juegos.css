@@ -1,0 +1,45 @@
+h1{
+    padding-top: 75px;
+    padding-bottom: 75px;
+    text-align: center;
+    font-size: 36px;
+}
+div img{
+    width: 100%;
+}
+h2{
+    font-size: 22px; 
+}
+.game{
+    display: flex;
+    justify-content: space-evenly;
+    padding:50px 30px;
+    border: 2px solid black;
+}
+.descrip-id {
+    display: flex;
+    flex-direction: column;
+}
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:20px 20px;
+}
+.add-cart-btn{
+    background: rgb(0, 119, 255);
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+.add-cart-btn:hover{
+    background: rgb(209, 209, 209);
+}
+.fa-plus-square{
+    padding-right:10px ;
+}
+.add-btn{
+    padding: 20px;
+}

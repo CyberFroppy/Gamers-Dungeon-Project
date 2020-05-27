@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
+const nodemailer = require("nodemailer");
 const {
     Users
 } = require("./models/userModel");
@@ -21,7 +22,9 @@ const {
     PORT,
     DATABASE_URL,
     API_SECRET,
-    HASHING_ROUNDS
+    HASHING_ROUNDS,
+    EMAIL,
+    EMAIL_PASSWORD
 } = require('./config');
 const {
     validate
@@ -31,6 +34,14 @@ const userValidation = validate(false);
 const adminValidation = validate(true);
 const app = express();
 const jsonParser = bodyParser.json();
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: EMAIL,
+        pass: EMAIL_PASSWORD
+    }
+});
 
 app.use(morgan('dev'));
 app.use(express.static("public"));
@@ -66,9 +77,34 @@ function createToken(res) {
     };
 }
 
+app.post('/api/sendmail', jsonParser, (req, res) => {
+    const {
+        name,
+        mail,
+        subject,
+        message
+    } = req.body;
+    if (!name || !mail || !subject || !message) {
+        res.statusMessage = "Insufficient mail data";
+        return res.status(406).end();
+    }
+    const mailOptions = {
+        from: EMAIL,
+        to: EMAIL,
+        subject,
+        text: `Name: ${name}\nContact email: ${mail}\n${message}`
+    };
+    return transporter.sendMail(mailOptions, (err, _) => {
+        if (err) {
+            res.statusMessage = "Something went wrong sending email";
+            return res.status(400).end();
+        }
+        return res.status(200).end();
+    });
+});
+
 app.post('/api/reservation', [jsonParser, userValidation], (req, res) => {
     const userId = req.userInfo._id;
-    console.log(userId);
     const {
         reservationName,
         tableNo,

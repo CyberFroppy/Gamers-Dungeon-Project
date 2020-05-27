@@ -43,3 +43,6 @@ h2{
 .add-btn{
     padding: 20px;
 }
+.admin-section{
+    display: none;
+}

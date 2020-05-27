@@ -19,6 +19,8 @@ function verifyToken() {
                 console.log("Failed authentication");
                 window.location.href = "index.html";
             });
+    } else {
+        window.location.href = "index.html";
     }
 }
 

@@ -36,6 +36,13 @@ const Games = {
             .create(newGame)
             .then(createdGame => createdGame);
     },
+    getGameById: async function(id) {
+        return gamesCollection
+            .findOne({
+                id: id
+            })
+            .then(foundGame => foundGame);
+    },
     getAllGames: async function() {
         return gamesCollection
             .find()

@@ -292,6 +292,18 @@ app.post('/api/games', [adminValidation, jsonParser], async (req, res) => {
     }).catch(error(res));
 });
 
+app.get('/api/games/:id', (req, res) => {
+    const id = req.params.id;
+    return Games.getGameById(id)
+        .then(game => {
+            if (game) {
+                return res.status(200).json(game);
+            }
+            res.statusMessage = `No game with id: ${id}`;
+            return res.status(400).end();
+        }).catch(error(res));
+});
+
 app.get('/api/games', (_, res) => {
     return Games.getAllGames().then(games => {
         if (games) {

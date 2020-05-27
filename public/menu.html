@@ -37,6 +37,76 @@
 
         </div>
     </nav>
+    <form class="form">
+        <div class="form-container">
+            <h1>To the Table</h1>
+            <div class="form-inputs">
+                <div class="name">
+                    <label for="name-field">Name:</label>
+                    <input id="name-field" type="text" placeholder="Enter your name">
+                </div>
+                <div class="table-select">
+                    <label for="table">Number of Table: </label>
+                    <select name="table" id="table">
+                        <option value="">-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="order-table">
+                    <div>
+                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-minus-square"></i>
+                        <p>Dedos de Queso</p>
+                        <label for="counter1"></label>
+                        <input id="counter1" type="number" value="0">
+                    </div>
+                    <div>
+                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-minus-square"></i>
+                        <p>Boneless</p>
+                        <label for="counter2"></label>
+                        <input id="counter2" type="number" value="0">
+                    </div>
+                    <div>
+                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-minus-square"></i>
+                        <p>Bacon Burguer</p>
+                        <label for="counter3"></label>
+                        <input id="counter3" type="number" value="0">
+                    </div>
+                    <div>
+                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-minus-square"></i>
+                        <p>Chicken Sandwich</p>
+                        <label for="counter4"></label>
+                        <input id="counter4" type="number" value="0">
+                    </div>
+                    <div>
+                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-minus-square"></i>
+                        <p>Milkshake</p>
+                        <label for="counter5"></label>
+                        <input id="counter5" type="number" value="0">
+                    </div>
+
+                </div>
+                <div class="error"><span>Order Failed, please add product before clicking the button</span></div>
+            </div>
+            <button class="order-btn">Add order</button>
+
+
+        </div>
+    </form>
+
+    <section class="my-order">
+        <h1>My order</h1>
+        <div class="complete-orderS"></div>
+        <button class="cancel-btn">Cancel order</button>
+    </section>
     <footer>
         <p>&copy; Gamers Dungeon
             <script>document.write(new Date().getFullYear());</script>

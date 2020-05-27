@@ -20,7 +20,7 @@ function validate(admin) {
                 res.statusMessage = "Reserved for admin";
                 return res.status(409).end();
             }
-            req.user = decoded;
+            req.userInfo = decoded;
             next();
         });
     };

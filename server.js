@@ -43,7 +43,7 @@ function createToken(res) {
     return function(user) {
         if (user) {
             let userData = {
-                _id : user._id,
+                _id: user._id,
                 username: user.username,
                 userType: user.userType
             };

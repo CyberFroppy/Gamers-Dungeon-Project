@@ -8,6 +8,7 @@
     margin: 0px;
     left: 0px;
     animation: 20s slider infinite;
+    z-index: -1;
 }
 .slider figure img{
     width: 20%;
@@ -70,19 +71,6 @@
     padding-left: 5em;
     padding-right: 4.8em;
     background-color: lightskyblue;
-}
-footer{
-    background-color: #0082E6;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center; 
-    color: white;
-    /* font-weight: bold; */
-    font-size: 24px;
-    padding: 20px;
-    width: 100%;
-    /* margin-top: auto; */
 }
 .map{
     display: flex;

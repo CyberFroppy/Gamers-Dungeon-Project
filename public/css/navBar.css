@@ -69,6 +69,11 @@ nav{
     .nav-items{
         font-size: 14px;
     }
+    nav{
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
 
 }
 
@@ -108,5 +113,10 @@ nav{
     }
     #check:checked ~ ul{
         left: 0;
+    }
+    nav{
+        position: fixed;
+        top: 0;
+        width: 100%;
     }
 }

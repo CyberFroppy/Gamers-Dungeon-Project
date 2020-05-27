@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/navBar.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="./css/contacto.css">
+    <link rel="stylesheet" href="./css/footer.css">
     <link rel="shortcut icon" href="./img/TowerLogo.png" type="image/x-icon" />
-    <title>Contacto</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Contact</title>
 </head>
 
 <body>
@@ -20,12 +22,12 @@
             <a class="inicio" href="./index.html"><img class="logo" src="./img/DungeonsLogoWhite.png"
                     alt="Tower Logo"></a>
             <ul class="nav-items">
-                <li><a class="inicio" href="./index.html">Inicio</a></li>
-                <li><a class="reservaciones" href="./reservaciones.html">Reservaciones</a></li>
-                <li><a class="menu" href="./menu.html">Menú</a></li>
-                <li><a class="juegos" href="./juegos.html">Juegos</a></li>
-                <li><a class="nosotros" href="./nosotros.html">Nosotros</a></li>
-                <li><a class="active contacto" href="./contacto.html">Contacto</a></li>
+                <li><a class="inicio" href="./index.html">Home</a></li>
+                <li><a class="reservaciones" href="./reservaciones.html">Reservations</a></li>
+                <li><a class="menu" href="./menu.html">Menu</a></li>
+                <li><a class="juegos" href="./juegos.html">Games</a></li>
+                <li><a class="nosotros" href="./nosotros.html">About Us</a></li>
+                <li><a class="active contacto" href="./contacto.html">Contact</a></li>
                 <li><a class="login" href="./login.html">Login</a></li>
                 <li>
                     <a class="cart" href="./carrito.html">
@@ -36,6 +38,45 @@
 
         </div>
     </nav>
+
+    <section class="contact">
+        <form class="form">
+            <div class="form-container">
+                <div class="form-inputs">
+                    <div>
+                        <h1>Contact Us!</h1>
+                        <p class="question">Have a question?</p>
+                        <p class="question-message">Send us a message or an email! We will do our best to get back to
+                            you</p>
+                    </div>
+                    <div class="name">
+                        <label for="name-field">Name:</label>
+                        <input id="name-field" type="text" placeholder="Enter your name">
+                    </div>
+                    <div class="email">
+                        <label for="email-field">Email:</label>
+                        <input id="email-field" type="email" placeholder="Enter your email">
+                    </div>
+                    <div class="subject">
+                        <label for="subject-field">Subject:</label>
+                        <input id="subject-field" type="text" placeholder="Enter the subject of your message">
+                    </div>
+                    <div class="message">
+                        <label for="message-field">Message: </label>
+                        <textarea name="message-field" id="message-field" onfocus="this.value=''; setbg('#e5fff3');"
+                            onblur="setbg('white')">Enter your message here...</textarea>
+                    </div>
+                    <div class="error"><span>Message sent!</span></div>
+                </div>
+                <button class="send-btn">Send Email</button>
+            </div>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; Gamers Dungeon
+            <script>document.write(new Date().getFullYear());</script>
+        </p>
+    </footer>
 </body>
 
 </html>

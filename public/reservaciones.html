@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/navBar.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="./css/footer.css">
     <link rel="shortcut icon" href="./img/TowerLogo.png" type="image/x-icon" />
-    <title>Reservaciones</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Reservations</title>
 </head>
 
 <body>
@@ -20,12 +21,12 @@
             <a class="inicio" href="./index.html"><img class="logo" src="./img/DungeonsLogoWhite.png"
                     alt="Tower Logo"></a>
             <ul class="nav-items">
-                <li><a class="inicio" href="./index.html">Inicio</a></li>
-                <li><a class="active reservaciones" href="./reservaciones.html">Reservaciones</a></li>
-                <li><a class="menu" href="./menu.html">Menú</a></li>
-                <li><a class="juegos" href="./juegos.html">Juegos</a></li>
-                <li><a class="nosotros" href="./nosotros.html">Nosotros</a></li>
-                <li><a class="contacto" href="./contacto.html">Contacto</a></li>
+                <li><a class="inicio" href="./index.html">Home</a></li>
+                <li><a class="active reservaciones" href="./reservaciones.html">Reservations</a></li>
+                <li><a class="menu" href="./menu.html">Menu</a></li>
+                <li><a class="juegos" href="./juegos.html">Games</a></li>
+                <li><a class="nosotros" href="./nosotros.html">About Us</a></li>
+                <li><a class="contacto" href="./contacto.html">Contact</a></li>
                 <li><a class="login" href="./login.html">Login</a></li>
                 <li>
                     <a class="cart" href="./carrito.html">
@@ -37,30 +38,30 @@
         </div>
     </nav>
     <section class="reservaciones-semana">
-        <h1>Reservaciones</h1>
+        <h1>Reservations of the Week</h1>
     </section>
 
     <section class="reservar-mesa">
         <form class="form">
             <div class="form-container">
                 <div class="logo-img">
-                    <h1>Reserva tu Mesa</h1>
+                    <h1>Reserve your table</h1>
                 </div>
                 <div class="form-inputs">
                     <div class="name">
-                        <label for="name-field">Nombre:</label>
+                        <label for="name-field">Name:</label>
                         <input id="name-field" type="text" placeholder="Ingresa tu nombre" required>
                     </div>
                     <div class="date">
-                        <label for="date-field">Fecha: </label>
+                        <label for="date-field">Date: </label>
                         <input id="date-field" type="date" required>
                     </div>
                     <div class="hour">
-                        <label for="hour-field">Hora: </label>
+                        <label for="hour-field">Hour: </label>
                         <input id="hour-field" type="time" required>
                     </div>
                     <div class="people-select">
-                        <label for="people">Personas: </label>
+                        <label for="people">How many people: </label>
                         <select name="people" id="people" required>
                             <option value="">-</option>
                             <option value="1">1</option>
@@ -74,7 +75,7 @@
                         </select>
                     </div>
                     <div class="games-select">
-                        <label for="games">Juego de Mesa: </label>
+                        <label for="games">Board Game: </label>
                         <select name="games" id="games">
                             <optgroup label="Juegos de Mesa"></optgroup>
                             <option value="">-</option>
@@ -84,7 +85,7 @@
                         </select>
                     </div>
                     <div class="table-select">
-                        <label for="table">Número de Mesa: </label>
+                        <label for="table">Number of Table: </label>
                         <select name="table" id="table">
                             <option value="">-</option>
                             <option value="1">1</option>
@@ -94,15 +95,20 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <button class="register-btn">Registrarse</button>
-                    <div class="error"><span>Error al reservar</span></div>
+                    <button class="register-btn">Register</button>
+                    <div class="error"><span>Error when booking</span></div>
                     <div>
-                        <p>Nota: A partir de la hora de inicio se cuenta con un máximo de 5 horas por reservación.</p>
+                        <p>Note: From the start time there is a maximum of 5 hours per reservation.</p>
                     </div>
                 </div>
             </div>
         </form>
     </section>
+    <footer>
+        <p>&copy; Gamers Dungeon
+            <script>document.write(new Date().getFullYear());</script>
+        </p>
+    </footer>
     <script src="/js/reservaciones.js"></script>
 </body>
 

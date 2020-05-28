@@ -396,7 +396,7 @@ app.post('/api/register', jsonParser, (req, res) => {
         return res.status(406).end();
     }
 
-    return bcrypt.genSalt(HASHING_ROUNDS, (hashErr, salt) => {
+    return bcrypt.genSalt(Number(HASHING_ROUNDS), (hashErr, salt) => {
         if (hashErr) {
             res.statusMessage = "Error creating user";
             return res.status(400).end();

@@ -130,7 +130,7 @@ function loadFood() {
         responseJSON.forEach(food => {
             orderTable.innerHTML += `<div><i class="fas fa-plus-square fa-2x"></i>
                         <i class="fas fa-minus-square fa-2x"></i>
-<p>${food.name} <span class="admin-section">${food.id}</span></p><label for="counter${i}"></label><input id="counter${i} type="number" value="0"></input></div>`;
+<p>${food.name}</p><p class="admin-section">&nbsp;Id: ${food.id}</p><label for="counter${i}"></label><input id="counter${i} type="number" value="0"></input></div>`;
             i++;
         });
         verifyAdmin();

@@ -41,82 +41,86 @@
     <main>
         <h1>Board Games</h1>
         <section class="game-list">
-        <div class="game">
-            <div>
-                <img src="./img/milkshakes.png" alt="milkshakes">
-            </div>
-            <div class="descrip-id">
-                <div class="id admin-section">
-                    <h2>ID</h2>
-                    <p>1234567543</p>
+            <div class="game">
+                <div>
+                    <img src="./img/milkshakes.png" alt="milkshakes">
                 </div>
-                <div class="description">
-                    <h2>Description</h2>
-                    <p>
-                        El juego Risk comparte muchas características con los llamados juegos de guerra, pero en
-                        comparación
-                        con éstos, es bastante simple y abstracto. No pretende simular correctamente la estrategia
-                        militar,
-                        las dimensiones del mundo ni la logística de las campañas extensas y el azar tiene un papel más
-                        importante que en los wargames tradicionales. El objetivo es ocupar todos los territorios del
-                        mapa y
-                        eliminar a los enemigos.
-                    </p>
-                </div>
+                <div class="descrip-id">
+                    <div class="id admin-section">
+                        <h2>ID</h2>
+                        <p>1234567543</p>
+                    </div>
+                    <div class="description">
+                        <h2>Description</h2>
+                        <p>
+                            El juego Risk comparte muchas características con los llamados juegos de guerra, pero en
+                            comparación
+                            con éstos, es bastante simple y abstracto. No pretende simular correctamente la estrategia
+                            militar,
+                            las dimensiones del mundo ni la logística de las campañas extensas y el azar tiene un papel
+                            más
+                            importante que en los wargames tradicionales. El objetivo es ocupar todos los territorios
+                            del
+                            mapa y
+                            eliminar a los enemigos.
+                        </p>
+                    </div>
 
-                <div class="button-container">
-                    <div class="stock">
-                        <h2>In Stock</h2>
-                        <p>8</p>
-                    </div>
-                    <div class="price">
-                        <h2>Price</h2>
-                        <p>$700</p>
-                    </div>
-                    <div class="add-cart">
-                        <button class="add-cart-btn">Add to Cart</button>
-                    </div>
-                    <div class="delete admin-section">
-                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                    <div class="button-container">
+                        <div class="stock">
+                            <h2>In Stock</h2>
+                            <p>8</p>
+                        </div>
+                        <div class="price">
+                            <h2>Price</h2>
+                            <p>$700</p>
+                        </div>
+                        <div class="add-cart">
+                            <button class="add-cart-btn">Add to Cart</button>
+                        </div>
+                        <div class="delete admin-section">
+                            <button class="delete-btn"><i class="fas fa-trash-alt fa-2x"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </section>
 
         <section class="admin-section">
-        <button class="add-btn"><i class="far fa-plus-square"></i>Add Board Game</button>
-        <button class="edit-btn"><i class="fas fa-edit"></i></button>
-        <div class="edit-form">
-            <form class="form">
-                <div class="form-container">
-                    <div class="form-inputs">
-                        <div class="id-edit">
-                            <label for="id-field">Id:</label>
-                            <input id="id-field" type="text" placeholder="Id of Game">
+            <div class="admin-btns">
+                <button class="add-btn"><i class="far fa-plus-square"></i> Product</button>
+                <button class="edit-btn"><i class="fas fa-edit"></i>Edit Product</button>
+            </div>
+            <div class="edit-form">
+                <form class="form">
+                    <div class="form-container">
+                        <div class="form-inputs">
+                            <div class="id-edit">
+                                <label for="id-field">Id:</label>
+                                <input id="id-field" type="text" placeholder="Id of Game">
+                            </div>
+                            <div class="name-edit">
+                                <label for="name-field">Name:</label>
+                                <input id="name-field" type="text" placeholder="Name of Game">
+                            </div>
+                            <div class="description-edit">
+                                <label for="description-field">Description:</label>
+                                <input id="description-field" type="text" placeholder="Enter new description">
+                            </div>
+                            <div class="stock-edit">
+                                <label for="stock-field">Stock:</label>
+                                <input id="stock-field" type="text" placeholder="Update stock">
+                            </div>
+                            <div class="price-edit">
+                                <label for="price-field">Price:</label>
+                                <input id="price-field" type="text" placeholder="Update price">
+                            </div>
+                            <div class="error"><span>Game updated!</span></div>
                         </div>
-                        <div class="name-edit">
-                            <label for="name-field">Name:</label>
-                            <input id="name-field" type="text" placeholder="Name of Game">
-                        </div>
-                        <div class="description-edit">
-                            <label for="description-field">Description:</label>
-                            <input id="description-field" type="text" placeholder="Enter new description">
-                        </div>
-                        <div class="stock-edit">
-                            <label for="stock-field">Stock:</label>
-                            <input id="stock-field" type="text" placeholder="Update stock">
-                        </div>
-                        <div class="price-edit">
-                            <label for="price-field">Price:</label>
-                            <input id="price-field" type="text" placeholder="Update price">
-                        </div>
-                        <div class="error"><span>Game updated!</span></div>
+                        <button class="update-btn">Update Game</button>
                     </div>
-                    <button class="update-btn">Update Game</button>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
         </section>
     </main>
     <footer>

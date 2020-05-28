@@ -6,10 +6,9 @@ const url = "/api/register";
 const errorElement = document.querySelector('.error');
 
 
-function registerUser(username, email, password) {
+function registerUser(username, password) {
     let userInfo = {
         username,
-        email,
         password
     };
     let settings = {
@@ -38,9 +37,8 @@ function watchRegistrationForm() {
     registrationForm.addEventListener('submit', event => {
         event.preventDefault();
         let username = userField.value;
-        let email = emailField.value;
         let password = passwordField.value;
-        registerUser(username, email, password);
+        registerUser(username, password);
     });
 }
 

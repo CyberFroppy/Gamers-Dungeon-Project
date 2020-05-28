@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/navBar.css">
+    <link rel="stylesheet" href="./css/menu.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="shortcut icon" href="./img/TowerLogo.png" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -37,9 +38,9 @@
 
         </div>
     </nav>
+    <h1>To the Table</h1>
     <form class="form">
         <div class="form-container">
-            <h1>To the Table</h1>
             <div class="form-inputs">
                 <div class="name">
                     <label for="name-field">Name:</label>
@@ -58,36 +59,36 @@
                 </div>
                 <div class="order-table">
                     <div>
-                        <i class="fas fa-plus-square"></i>
-                        <i class="fas fa-minus-square"></i>
+                        <i class="fas fa-plus-square fa-2x"></i>
+                        <i class="fas fa-minus-square fa-2x"></i>
                         <p>Dedos de Queso</p>
                         <label for="counter1"></label>
                         <input id="counter1" type="number" value="0">
                     </div>
                     <div>
-                        <i class="fas fa-plus-square"></i>
-                        <i class="fas fa-minus-square"></i>
+                        <i class="fas fa-plus-square fa-2x"></i>
+                        <i class="fas fa-minus-square fa-2x"></i>
                         <p>Boneless</p>
                         <label for="counter2"></label>
                         <input id="counter2" type="number" value="0">
                     </div>
                     <div>
-                        <i class="fas fa-plus-square"></i>
-                        <i class="fas fa-minus-square"></i>
+                        <i class="fas fa-plus-square fa-2x"></i>
+                        <i class="fas fa-minus-square fa-2x"></i>
                         <p>Bacon Burguer</p>
                         <label for="counter3"></label>
                         <input id="counter3" type="number" value="0">
                     </div>
                     <div>
-                        <i class="fas fa-plus-square"></i>
-                        <i class="fas fa-minus-square"></i>
+                        <i class="fas fa-plus-square fa-2x"></i>
+                        <i class="fas fa-minus-square fa-2x"></i>
                         <p>Chicken Sandwich</p>
                         <label for="counter4"></label>
                         <input id="counter4" type="number" value="0">
                     </div>
                     <div>
-                        <i class="fas fa-plus-square"></i>
-                        <i class="fas fa-minus-square"></i>
+                        <i class="fas fa-plus-square fa-2x"></i>
+                        <i class="fas fa-minus-square fa-2x"></i>
                         <p>Milkshake</p>
                         <label for="counter5"></label>
                         <input id="counter5" type="number" value="0">
@@ -97,16 +98,44 @@
                 <div class="error"><span>Order Failed, please add product before clicking the button</span></div>
             </div>
             <button class="order-btn">Add order</button>
-
-
         </div>
     </form>
 
     <section class="my-order">
         <h1>My order</h1>
-        <div class="complete-orderS"></div>
-        <button class="cancel-btn">Cancel order</button>
+        <div class="complete-orders">
+
+            <button class="cancel-btn">Cancel order</button>
+        </div>
     </section>
+
+    <div class="admin-btns">
+        <button class="add-btn"><i class="far fa-plus-square"></i>Add Product</button>
+        <button class="edit-btn"><i class="fas fa-edit"></i>Edit Product</button>
+    </div>
+    <div class="edit-form">
+        <form class="form">
+            <div class="form-container">
+                <div class="form-inputs">
+                    <div class="id-edit">
+                        <label for="id-field">Id:</label>
+                        <input id="id-field" type="text" placeholder="Id of Product">
+                    </div>
+                    <div class="name-edit">
+                        <label for="name-field">Name:</label>
+                        <input id="name-field" type="text" placeholder="Enter new product">
+                    </div>
+                    <div class="price-edit">
+                        <label for="price-field">Price:</label>
+                        <input id="price-field" type="text" placeholder="Update price">
+                    </div>
+                    <div class="error"><span>Product updated!</span></div>
+                    <div class="error"><span>Product added!</span></div>
+                </div>
+                <button class="update-btn">Update/Add Product</button>
+            </div>
+        </form>
+    </div>
     <footer>
         <p>&copy; Gamers Dungeon
             <script>document.write(new Date().getFullYear());</script>

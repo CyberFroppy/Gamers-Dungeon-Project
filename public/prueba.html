@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/juegos.css">
+    <link rel="shortcut icon" href="./img/TowerLogo.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="admin-section">
+        <button class="add-btn"><i class="far fa-plus-square"></i>Add Board Game</button>
+        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+        <div class="edit-form">
+            <form class="form">
+                <div class="form-container">
+                    <div class="form-inputs">
+                        <div class="id-edit">
+                            <label for="id-field">Id:</label>
+                            <input id="id-field" type="text" placeholder="Id of Game">
+                        </div>
+                        <div class="name-edit">
+                            <label for="name-field">Name:</label>
+                            <input id="name-field" type="text" placeholder="Name of Game">
+                        </div>
+                        <div class="description-edit">
+                            <label for="description-field">Description:</label>
+                            <input id="description-field" type="text" placeholder="Enter new description">
+                        </div>
+                        <div class="stock-edit">
+                            <label for="stock-field">Stock:</label>
+                            <input id="stock-field" type="text" placeholder="Update stock">
+                        </div>
+                        <div class="price-edit">
+                            <label for="price-field">Price:</label>
+                            <input id="price-field" type="text" placeholder="Update price">
+                        </div>
+                        <div class="error"><span>Game updated!</span></div>
+                    </div>
+                    <button class="update-btn">Update Game</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

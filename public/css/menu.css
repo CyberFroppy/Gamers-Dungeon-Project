@@ -94,7 +94,7 @@ input[type=number] {
     border: none;
     font-size: 30px;
 }
-.order-btn:hover, .update-btn:hover{
+.order-btn:hover, .update-btn:hover, .edit-btn:hover{
     background: #E5E5E5;
     color:black;
 }
@@ -112,7 +112,7 @@ input[type=number] {
     border: none;
     font-size: 30px;
 }
-.cancel-btn:hover{
+.cancel-btn:hover, .add-btn:hover{
     opacity: 0.7;
 }
 .error{

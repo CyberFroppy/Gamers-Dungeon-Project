@@ -429,16 +429,6 @@ app.get('/api/games', (_, res) => {
     }).catch(error(res));
 });
 
-app.get('/api/games/available', (_, res) => {
-    return Games.getAvailableGames().then(games => {
-        if (games) {
-            return res.status(200).json(games);
-        }
-        res.statusMessage = "Something went wrong while getting available games";
-        return res.status(400).end();
-    }).catch(error(res));
-});
-
 app.delete('/api/games/:id', adminValidation, (req, res) => {
     let gameId = req.params.id;
     return Games.removeGameById(gameId).then(removed => {

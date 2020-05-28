@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('/GamersDungeon_FinalProject/public/img/background.png');
+    background-image: url('/img/background.png');
     background-color: #A8A9A9  ;
     background-blend-mode: overlay;
     background-repeat: no-repeat;

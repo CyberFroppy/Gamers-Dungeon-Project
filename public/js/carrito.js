@@ -1,5 +1,6 @@
 const token = localStorage.getItem('token');
 const itemList = document.querySelector('.items');
+const pay = document.querySelector('.pay-btn');
 
 itemList.innerHTML = '';
 
@@ -48,9 +49,35 @@ function watchRemove() {
     });
 }
 
+function watchPay() {
+    pay.addEventListener('click', event => {
+        event.preventDefault();
+        fetch('/api/pay', {method: 'POST', headers: {sessiontoken: token}}).then(response => {
+            if(response.ok && response.status === 200) {
+                fetch('/api/cart', {
+                    method: 'DELETE',
+                    headers: {
+                        sessiontoken: token
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error(response.statusText);
+                }).then(responseJSON => {
+                    console.log(responseJSON);
+                    fillCart();
+                }).catch(err => console.log(err));
+            }
+            throw new Error(response.statusText);
+        }).catch(err => console.log(err));
+    });
+}
+
 function init() {
     fillCart();
     watchRemove();
+    watchPay();
 }
 
 init();

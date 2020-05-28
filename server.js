@@ -119,6 +119,19 @@ app.post('/api/cart/:id', userValidation, (req, res) => {
     }).catch(error(res));
 });
 
+app.post('/api/pay', userValidation, async (req, res) => {
+    let userId = req.userInfo._id;
+    let cart = await Carts.getCart(userId);
+    let stock = cart.game.stock;
+    return Games.updateStock(cart.game.id, stock - 1).then(game => {
+        if (game) {
+            return res.status(200).end();
+        }
+        res.statusMessage = "Failure paying";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
 app.delete('/api/cart', userValidation, (req, res) => {
     let userId = req.userInfo._id;
     return Carts.removeGame(userId).then(cart => {

@@ -35,7 +35,7 @@ const Carts = {
     getCart: async function(user) {
         return cartsCollection.findOne({
             user: user
-        }).populate('game', ['gamename', 'stock', 'price', 'image']).then(cart => cart);
+        }).populate('game', ['gamename', 'stock', 'price', 'image', 'id']).then(cart => cart);
     },
     removeGame: async function(user) {
         return cartsCollection.updateOne({

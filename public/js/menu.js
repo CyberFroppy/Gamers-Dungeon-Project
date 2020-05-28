@@ -12,11 +12,38 @@ const foodNameField = document.querySelector('#food-name-field');
 const idField = document.querySelector('#id-field');
 const priceField = document.querySelector('#price-field');
 const adminError = document.querySelector('.admin-error');
+const orderDiv = document.querySelector('.order');
+const cancelOrder = document.querySelector('.cancel-btn');
 const ordersUrl = '/api/orders';
 const foodUrl = '/api/food';
 
 errorMessage.innerHTML = '';
 adminError.innerHTML = '';
+orderDiv.innerHTML = '';
+
+function updateOrder() {
+    let divs = orderTable.getElementsByTagName('div');
+    orderDiv.innerHTML = '';
+    for (let food of divs) {
+        let quantity = food.getElementsByTagName('input')[0];
+        let name = food.getElementsByTagName('p')[0];
+        if (Number(quantity.value) > 0) {
+            orderDiv.innerHTML += `<div><p>${name.textContent}</p><p>${quantity.value}</p></div>`;
+        }
+    }
+}
+
+function watchCancel() {
+    cancelOrder.addEventListener('click', event => {
+        event.preventDefault();
+        let divs = orderTable.getElementsByTagName('div');
+        for (let food of divs) {
+            let quantity = food.getElementsByTagName('input')[0];
+            quantity.value = '0';
+        }
+        updateOrder();
+    });
+}
 
 function foodEndpoint(method) {
     let url = foodUrl;
@@ -119,6 +146,7 @@ function watchOrderTable() {
             let inputElement = parentDiv.getElementsByTagName('input')[0];
             let currentValue = Number(inputElement.value);
             inputElement.value = currentValue + 1;
+            updateOrder();
         }
         if (event.target.classList.contains('fa-minus-square')) {
             let parentDiv = event.target.parentElement;
@@ -126,6 +154,7 @@ function watchOrderTable() {
             let currentValue = Number(inputElement.value);
             if (currentValue > 0) {
                 inputElement.value = currentValue - 1;
+                updateOrder();
             }
         }
     });
@@ -190,6 +219,7 @@ function init() {
     watchEditFood();
     verifyAdmin();
     watchAddFood();
+    watchCancel();
 }
 
 init();

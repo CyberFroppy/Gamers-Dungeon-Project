@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/navBar.css">
+    <link rel="stylesheet" href="./css/reservaciones.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="shortcut icon" href="./img/TowerLogo.png" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -37,8 +38,29 @@
 
         </div>
     </nav>
+    <h1>Reservations of the Week</h1>
     <section class="reservaciones-semana">
-        <h1>Reservations of the Week</h1>
+        <div class="reservation">
+            <div class="nombre">
+                <p>Carlos Tamez </p>
+            </div>
+            <div class="mesa">
+                <p>Table 3</p>
+            </div>
+            <div class="fecha">
+                <p>Start time 2020-05-28 10:22</p>
+            </div>
+            <div class="juego">
+                <p>
+                    Game: Dungeons and Dragons Fifth edition
+                </p>
+            </div>
+            <div class="personas">
+                <p>
+                    People: 3
+                </p>
+            </div>
+        </div>
     </section>
 
     <section class="reservar-mesa">
@@ -60,44 +82,47 @@
                         <label for="hour-field">Hour: </label>
                         <input id="hour-field" type="time" required>
                     </div>
-                    <div class="people-select">
-                        <label for="people">How many people: </label>
-                        <select name="people" id="people" required>
-                            <option value="">-</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                        </select>
+                    <div class="selects">
+                        <div class="people-select">
+                            <label for="people"># of people: </label>
+                            <select name="people" id="people" required>
+                                <option value="">-</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        <div class="games-select">
+                            <label for="games">Board Game: </label>
+                            <select name="games" id="games">
+                                <optgroup label="Juegos de Mesa"></optgroup>
+                                <option value="">-</option>
+                                <option value="azul">Azul</option>
+                                <option value="catan">Catan</option>
+                                <option value="risk">Risk</option>
+                            </select>
+                        </div>
+                        <div class="table-select">
+                            <label for="table">Table #: </label>
+                            <select name="table" id="table">
+                                <option value="">-</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="games-select">
-                        <label for="games">Board Game: </label>
-                        <select name="games" id="games">
-                            <optgroup label="Juegos de Mesa"></optgroup>
-                            <option value="">-</option>
-                            <option value="azul">Azul</option>
-                            <option value="catan">Catan</option>
-                            <option value="risk">Risk</option>
-                        </select>
-                    </div>
-                    <div class="table-select">
-                        <label for="table">Number of Table: </label>
-                        <select name="table" id="table">
-                            <option value="">-</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
+
                     <button class="register-btn">Register</button>
                     <div class="error"><span>Error when booking</span></div>
-                    <div>
+                    <div class="note">
                         <p>Note: From the start time there is a maximum of 5 hours per reservation.</p>
                     </div>
                 </div>

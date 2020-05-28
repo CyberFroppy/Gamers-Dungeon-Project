@@ -1,0 +1,46 @@
+h1{
+    padding-top: 100px;
+    text-align: center;
+    font-size: 36px;
+}
+div img{
+    width: 100%;
+}
+.item{
+    display: flex;
+    justify-content: space-evenly;
+    padding:50px 30px;
+    border: 2px solid black;
+}
+.descrip-id {
+    display: flex;
+    flex-direction: row;
+}
+.price-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding:20px 20px;
+    width: 100%;
+}
+.price-container div{
+    padding-right: 0.5em;
+    text-align: center;
+}
+.remove-cart-btn{
+    background:#E63700;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+.remove-cart-btn:hover{
+    background: rgb(255, 105, 105)
+}
+@media (max-width: 991px) {
+    h2{
+        font-size: 16px;
+    }
+}

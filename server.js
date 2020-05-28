@@ -180,6 +180,15 @@ app.post('/api/reservation', [jsonParser, userValidation], (req, res) => {
         }).catch(error(res));
 });
 
+app.get('/api/reservation', async (_, res) => {
+    const reservations = await Reservations.getReservations();
+
+    const now = Date.now();
+    const weekInterval = 7 * 24 * 60 * 60 * 1000;
+    const weekReservations = reservations.filter(reservation => Date.parse(reservation.date) - now < weekInterval);
+    return res.status(200).json(weekReservations);
+});
+
 app.post('/api/food', [adminValidation, jsonParser], (req, res) => {
     const {
         name,
@@ -207,7 +216,7 @@ app.post('/api/food', [adminValidation, jsonParser], (req, res) => {
                 return res.status(201).json(newFood);
             }
             res.statusMessage = "Something went wrong creating food";
-            return res.status(400).end();
+            return res.status(400).end(); 
         })
         .catch(error(res));
 });
@@ -216,6 +225,18 @@ app.get('/api/food', (_, res) => {
     return Foods.getFoods()
         .then(foods => res.status(200).json(foods))
         .catch(error(res));
+});
+
+app.get('/api/food/:id', (req, res) => {
+    let id = req.params.id;
+    return Foods.getFoodById(id)
+        .then(food => {
+            if (food) {
+                return res.status(200).json(food);
+            }
+            res.statusMessage = "Error fetching single food";
+            return res.status(400).end();
+        }).catch(error(res));
 });
 
 app.delete('/api/food/:id', adminValidation, (req, res) => {

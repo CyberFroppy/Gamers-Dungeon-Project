@@ -1,4 +1,5 @@
 const registrationButton = document.querySelector('.register-btn');
+const reservations = document.querySelector('.reservaciones-semana');
 const nameField = document.querySelector('#name-field');
 const dateField = document.querySelector('#date-field');
 const hourField = document.querySelector('#hour-field');
@@ -6,6 +7,8 @@ const peopleField = document.querySelector('#people');
 const gamesField = document.querySelector('#games');
 const tableField = document.querySelector('#table');
 const errorMessage = document.querySelector('.error');
+
+errorMessage.innerHTML = '';
 
 const url = "/api/reservation";
 
@@ -35,9 +38,26 @@ function makeRegistration(name, date, hour, people, game, tableNo) {
             throw new Error(result.statusText);
         }).then(createdRegistration => {
             console.log(createdRegistration);
+            fillReservations();
         }).catch(err => {
             console.log(err.message);
         });
+}
+
+function fillReservations() {
+    reservations.innerHTML = '';
+    fetch('/api/reservation', {method: 'GET'}).then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    }).then(responseJSON => {
+        for (reservation of responseJSON) {
+            reservations.innerHTML += `<div class="reservation"><div class="nombre"><p>${reservation.reservationName}</p></div><div class="mesa"><p>Table ${reservation.tableNo}</p></div><div class="fecha"><p>Start time ${reservation.date}</p></div><div class="juego"><p>Game: ${reservation.game}</p></div><div class="personas"><p>People: ${reservation.people}</p></div></div>`;
+        }
+    }).catch(err => {
+        console.log(err);
+    });
 }
 
 function fillGames() {
@@ -77,6 +97,7 @@ function watchRegistrationForm() {
 function init() {
     fillGames();
     watchRegistrationForm();
+    fillReservations();
 }
 
 init();

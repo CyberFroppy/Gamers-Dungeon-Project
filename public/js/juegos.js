@@ -111,8 +111,8 @@ function loadGames() {
 <p>${game.description}</p></div><div class="button-container"><div class="stock"><h2>In stock</h2><p>${game.stock}</p>
 </div><div class="price><h2>Price</h2><p>${game.price}</p></div><div class="add-cart"><button class="add-cart-btn">Add to Cart</button></div>
 <div class="delete admin-section"><button class="delete-btn" game=${game.id}><i class="fas fa-trash-alt"></i></button></div></div></div>`;
-            verifyAdmin();
         });
+        verifyAdmin();
     }).catch(err => console.log(err));
 }
 

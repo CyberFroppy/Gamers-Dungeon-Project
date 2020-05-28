@@ -139,6 +139,9 @@ input[type=number] {
     color: red;
     font-size: 18px;
 }
+.admin-section {
+    display: none;
+}
 @media (max-width: 991px) {
     .update-btn, .order-btn,.cancel-btn,.edit-btn, .add-btn {
         font-size: 20px;

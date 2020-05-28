@@ -1,16 +1,98 @@
+import verifyAdmin from '/js/verifyAdmin.js';
+
 const orderTable = document.querySelector('.order-table');
 const addOrderButton = document.querySelector('.order-btn');
+const addFoodButton = document.querySelector('.add-btn');
+const updateFoodButton = document.querySelector('.update-btn');
+const editButton = document.querySelector('.edit-btn');
 const tableField = document.querySelector('#table');
 const nameField = document.querySelector('#name-field');
 const errorMessage = document.querySelector('.error');
+const foodNameField = document.querySelector('#food-name-field');
+const idField = document.querySelector('#id-field');
+const priceField = document.querySelector('#price-field');
+const adminError = document.querySelector('.admin-error');
 const ordersUrl = '/api/orders';
+const foodUrl = '/api/food';
+
+errorMessage.innerHTML = '';
+adminError.innerHTML = '';
+
+function foodEndpoint(method) {
+    let url = foodUrl;
+    let id = idField.value;
+    let token = localStorage.getItem('token');
+    let foodInfo = {
+        id,
+        price: priceField.value,
+        name: foodNameField.value
+    };
+    let settings = {
+        method,
+        headers: {
+            sessiontoken: token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(foodInfo)
+    };
+    if (method === 'PATCH') {
+        url += `/${id}`;
+    }
+    fetch(url, settings).then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    }).then(responseJSON => {
+        loadFood();
+        console.log(responseJSON);
+    }).catch(err => {
+        console.log(err);
+        adminError.innerHTML = '<span>Operation error</span>';
+    });
+}
+
+function watchAddFood() {
+    addFoodButton.addEventListener('click', event => {
+        event.preventDefault();
+        foodEndpoint('POST');
+    });
+}
+
+function watchEditFood() {
+    updateFoodButton.addEventListener('click', event => {
+        event.preventDefault();
+        foodEndpoint('PATCH');
+    });
+}
+
+function watchFill() {
+    editButton.addEventListener('click', event => {
+        event.preventDefault();
+        let id = idField.value;
+        let url = foodUrl + `/${id}`;
+        fetch(url, {
+            method: 'GET'
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        }).then(responseJSON => {
+            foodNameField.value = responseJSON.name;
+            priceField.value = responseJSON.price;
+        }).catch(err => {
+            console.log(err);
+            adminError.innerHTML = '<span>Could not fill that id</span>';
+        });
+    });
+}
 
 function loadFood() {
-    let url = '/api/food';
     let settings = {
         method: 'GET'
     };
-    fetch(url, settings).then(response => {
+    fetch(foodUrl, settings).then(response => {
         if (response.ok) {
             orderTable.innerHTML = '';
             return response.json();
@@ -19,11 +101,12 @@ function loadFood() {
     }).then(responseJSON => {
         let i = 0;
         responseJSON.forEach(food => {
-            orderTable.innerHTML += `<div><i class="fas fa-plus-square"></i>
-                        <i class="fas fa-minus-square"></i>
-<p>${food.name}</p><label for="counter${i}"></label><input id="counter${i} type="number" value="0"></input></div>`;
+            orderTable.innerHTML += `<div><i class="fas fa-plus-square fa-2x"></i>
+                        <i class="fas fa-minus-square fa-2x"></i>
+<p>${food.name} <span class="admin-section">${food.id}</span></p><label for="counter${i}"></label><input id="counter${i} type="number" value="0"></input></div>`;
             i++;
         });
+        verifyAdmin();
     }).catch(err => {
         console.log(err.message);
     });
@@ -49,7 +132,11 @@ function watchOrderTable() {
 }
 
 function createOrder(name, tableNo, food) {
-    const foodInfo = {name, tableNo, food};
+    const foodInfo = {
+        name,
+        tableNo,
+        food
+    };
     let token = localStorage.getItem('token');
     const settings = {
         method: 'POST',
@@ -80,7 +167,10 @@ function watchOrderCreation() {
         for (let elem of divs) {
             let inputElement = elem.getElementsByTagName('input')[0];
             let name = elem.getElementsByTagName('p')[0].textContent;
-            food.push({name, quantity: inputElement.value});
+            food.push({
+                name,
+                quantity: inputElement.value
+            });
         }
         const name = nameField.value;
         const tableNo = tableField.options[tableField.selectedIndex].value;
@@ -96,6 +186,10 @@ function init() {
     loadFood();
     watchOrderTable();
     watchOrderCreation();
+    watchFill();
+    watchEditFood();
+    verifyAdmin();
+    watchAddFood();
 }
 
 init();

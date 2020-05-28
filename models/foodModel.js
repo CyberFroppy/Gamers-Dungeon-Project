@@ -28,6 +28,11 @@ const Foods = {
             .find()
             .then(foods => foods);
     },
+    getFoodById: async function(id) {
+        return foodsCollection
+            .findOne({id:id})
+            .then(food => food);
+    },
     removeFoodById: async function(foodId) {
         return foodsCollection
             .deleteOne({

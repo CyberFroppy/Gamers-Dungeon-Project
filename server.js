@@ -218,6 +218,18 @@ app.get('/api/food', (_, res) => {
         .catch(error(res));
 });
 
+app.get('/api/food/:id', (req, res) => {
+    let id = req.params.id;
+    return Foods.getFoodById(id)
+        .then(food => {
+            if (food) {
+                return res.status(200).json(food);
+            }
+            res.statusMessage = "Error fetching single food";
+            return res.status(400).end();
+        }).catch(error(res));
+});
+
 app.delete('/api/food/:id', adminValidation, (req, res) => {
     const foodId = req.params.id;
     return Foods.removeFoodById(foodId)

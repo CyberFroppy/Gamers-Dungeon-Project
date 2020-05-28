@@ -109,7 +109,7 @@ function loadGames() {
             gameList.innerHTML += `<div class="game"><div><img src="${game.image}"></div><div class="descrip-id">
 <div class="id admin-section"><h2>ID</h2><p>${game.id}</p></div><div class="description"><h2>Description</h2>
 <p>${game.description}</p></div><div class="button-container"><div class="stock"><h2>In stock</h2><p>${game.stock}</p>
-</div><div class="price><h2>Price</h2><p>${game.price}</p></div><div class="add-cart"><button class="add-cart-btn">Add to Cart</button></div>
+</div><div class="price"><h2>Price</h2><p>${game.price}</p></div><div class="add-cart"><button class="add-cart-btn" gid="${game._id}">Add to Cart</button></div>
 <div class="delete admin-section"><button class="delete-btn" game=${game.id}><i class="fas fa-trash-alt"></i></button></div></div></div>`;
         });
         verifyAdmin();
@@ -137,6 +137,27 @@ function watchGameList() {
                 }
             }).catch(err => {
                 console.log(err);
+            });
+        }
+        if (event.target.classList.contains('add-cart-btn')) {
+            const token = localStorage.getItem('token');
+            const id = event.target.getAttribute('gid');
+            const url = `/api/cart/${id}`;
+            const settings = {
+                method: 'POST',
+                headers: {
+                    sessiontoken: token
+                }
+            };
+            fetch(url, settings).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error(response.statusText);
+            }).then(responseJSON => {
+                console.log(responseJSON);
+            }).catch(err => {
+                console.log(err.message);
             });
         }
     });

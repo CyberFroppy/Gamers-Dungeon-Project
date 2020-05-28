@@ -19,8 +19,7 @@
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>
             </label>
-            <a class="inicio" href="./index.html"><img class="logo" src="./img/DungeonsLogoWhite.png"
-                    alt="Tower Logo"></a>
+            <a class="inicio" href="./index.html"><img class="logo" src="./img/DungeonsLogoWhite.png" alt="Tower Logo"></a>
             <ul class="nav-items">
                 <li><a class="inicio" href="./index.html">Home</a></li>
                 <li><a class="reservaciones" href="./reservaciones.html">Reservations</a></li>
@@ -40,36 +39,40 @@
     </nav>
     <main>
         <h1>Your shopping cart</h1>
-        <div class="item">
-            <div>
-                <img src="./img/milkshakes.png" alt="milkshakes">
+        <section class="items">
+            <div class="item">
+                <div>
+                    <img src="./img/milkshakes.png" alt="milkshakes">
+                </div>
+                <div class="price-container">
+                    <div class="remove-cart">
+                        <button class="remove-cart-btn">Remove</button>
+                    </div>
+                    <div class="price">
+                        <h2>Price</h2>
+                        <p>$1000</p>
+                    </div>
+                    <div class="quantity">
+                        <h2>Quantity</h2>
+                        <p>2</p>
+                    </div>
+                    <div class="total">
+                        <h2>Total</h2>
+                        <p>$2000</p>
+                    </div>
+                </div>
             </div>
-            <div class="price-container">
-                <div class="remove-cart">
-                    <button class="remove-cart-btn">Remove</button>
-                </div>
-                <div class="price">
-                    <h2>Price</h2>
-                    <p>$1000</p>
-                </div>
-                <div class="quantity">
-                    <h2>Quantity</h2>
-                    <p>2</p>
-                </div>
-                <div class="total">
-                    <h2>Total</h2>
-                    <p>$2000</p>
-                </div>
-            </div>
-        </div>
+        </section>
         <button class="pay-btn">Pay order</button>
-
     </main>
     <footer>
         <p>&copy; Gamers Dungeon
-            <script>document.write(new Date().getFullYear());</script>
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
         </p>
     </footer>
+    <script src="/js/carrito.js"></script>
 </body>
 
 </html>

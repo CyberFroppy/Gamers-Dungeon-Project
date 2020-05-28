@@ -396,19 +396,25 @@ app.post('/api/register', jsonParser, (req, res) => {
         return res.status(406).end();
     }
 
-    return bcrypt.hash(password, HASHING_ROUNDS)
-        .then(hashedPassword => {
-            let userData = {
-                username,
-                password: hashedPassword
-            };
+    return bcrypt.genSalt(HASHING_ROUNDS, (hashErr, salt) => {
+        if (hashErr) {
+            res.statusMessage = "Error creating user";
+            return res.status(400).end();
+        }
+        return bcrypt.hash(password, salt)
+            .then(hashedPassword => {
+                let userData = {
+                    username,
+                    password: hashedPassword
+                };
 
-            return Users
-                .createUser(userData)
-                .then(createToken(res))
-                .catch(error(res));
-        })
-        .catch(error(res));
+                return Users
+                    .createUser(userData)
+                    .then(createToken(res))
+                    .catch(error(res));
+            })
+            .catch(error(res));
+    });
 });
 
 app.post('/api/login', jsonParser, (req, res) => {

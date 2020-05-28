@@ -23,6 +23,9 @@ const {
     Orders
 } = require("./models/orderModel");
 const {
+    Carts
+} = require("./models/cartModel");
+const {
     PORT,
     DATABASE_URL,
     API_SECRET,
@@ -82,12 +85,60 @@ function createToken(res) {
     };
 }
 
+app.get('/api/cart', userValidation, async (req, res) => {
+    let id = req.userInfo._id;
+    await Carts.createCart(id);
+    return Carts.getCart(id).then(cart => {
+        if (cart) {
+            return res.status(200).json(cart);
+        }
+        res.statusMessage = "No cart for user";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
 app.get('/api/orders', adminValidation, (_, res) => {
     return Orders.getOrders().then(orders => {
         if (orders) {
             return res.status(200).json(orders);
         }
         res.statusMessage = "Cannot get orders";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.post('/api/cart/:id', userValidation, (req, res) => {
+    let userId = req.userInfo._id;
+    let gameId = req.params.id;
+    return Carts.addGameToCart(userId, gameId).then(cart => {
+        if (cart) {
+            return res.status(201).json(cart);
+        }
+        res.statusMessage = "Error";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.post('/api/pay', userValidation, async (req, res) => {
+    let userId = req.userInfo._id;
+    let cart = await Carts.getCart(userId);
+    let stock = cart.game.stock;
+    return Games.updateStock(cart.game.id, stock - 1).then(game => {
+        if (game) {
+            return res.status(200).end();
+        }
+        res.statusMessage = "Failure paying";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.delete('/api/cart', userValidation, (req, res) => {
+    let userId = req.userInfo._id;
+    return Carts.removeGame(userId).then(cart => {
+        if (cart) {
+            return res.status(200).json(cart);
+        }
+        res.statusMessage = "Something went wrong";
         return res.status(400).end();
     }).catch(error(res));
 });
@@ -216,7 +267,7 @@ app.post('/api/food', [adminValidation, jsonParser], (req, res) => {
                 return res.status(201).json(newFood);
             }
             res.statusMessage = "Something went wrong creating food";
-            return res.status(400).end(); 
+            return res.status(400).end();
         })
         .catch(error(res));
 });

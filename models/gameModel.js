@@ -72,6 +72,17 @@ const Games = {
                 new: true
             })
             .then(updatedGame => updatedGame);
+    },
+    updateStock: async function(gameId, stock) {
+        return gamesCollection.findOneAndUpdate({
+            id: gameId
+        }, {
+            $set: {
+                stock: stock
+            }
+        }, {
+            new: true
+        }).then(updatedGame => updatedGame);
     }
 };
 

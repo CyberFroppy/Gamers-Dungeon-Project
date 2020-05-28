@@ -20,6 +20,9 @@ const {
     Reservations
 } = require("./models/reservationModel");
 const {
+    Orders
+} = require("./models/orderModel");
+const {
     PORT,
     DATABASE_URL,
     API_SECRET,
@@ -78,6 +81,46 @@ function createToken(res) {
         return res.status(400).end();
     };
 }
+
+app.get('/api/orders', adminValidation, (_, res) => {
+    return Orders.getOrders().then(orders => {
+        if (orders) {
+            return res.status(200).json(orders);
+        }
+        res.statusMessage = "Cannot get orders";
+        return res.status(400).end();
+    }).catch(error(res));
+});
+
+app.post('/api/orders', [userValidation, jsonParser], (req, res) => {
+    const {
+        food,
+        tableNo,
+        name
+    } = req.body;
+    if (!food || !tableNo || !name) {
+        res.statusMessage = "Missing parameters";
+        return res.status(406).end();
+    }
+    if (isNaN(tableNo)) {
+        res.statusMessage = "Table number must be a numeric value";
+        return res.status(406).end();
+    }
+    let orderInfo = {
+        food,
+        tableNo,
+        name,
+        id: uuid.v4()
+    };
+    return Orders.createOrder(orderInfo)
+        .then(createdOrder => {
+            if (createdOrder) {
+                return res.status(201).json(createdOrder);
+            }
+            res.statusMessage = "Something went wrong creating order";
+            return res.status(400).end();
+        }).catch(error(res));
+});
 
 app.post('/api/sendmail', jsonParser, (req, res) => {
     const {
@@ -339,7 +382,7 @@ app.get('/api/verify-token', userValidation, (_, res) => {
     return res.status(200).end();
 });
 
-app.get('/api/verify-admin', adminValidation, (_,res) => {
+app.get('/api/verify-admin', adminValidation, (_, res) => {
     return res.status(200).end();
 });
 
